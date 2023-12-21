@@ -1,25 +1,38 @@
 // Import the data to customize and insert them into page
 const fetchData = () => {
-  fetch("customize.json")
-    .then(data => data.json())
-    .then(data => {
+  var jsonPath = "customize_data/customize.json";
+  // Get the URLSearchParams object from the current URL
+  const urlParams = new URLSearchParams(window.location.search);
+  // Get the value of the 'name' parameter
+  const nameParam = urlParams.get("name");
+  // If nameParam not null
+  if (nameParam){
+    jsonPath = `customize_data/${nameParam}.json`
+  }
+
+  var dataArr = [];
+  fetch(jsonPath)
+    .then((data) => data.json())
+    .then((data) => {
       dataArr = Object.keys(data);
-      dataArr.map(customData => {
+      dataArr.map((customData) => {
         if (data[customData] !== "") {
           if (customData === "imagePath") {
             document
               .querySelector(`[data-node-name*="${customData}"]`)
               .setAttribute("src", data[customData]);
           } else {
-            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
+            document.querySelector(
+              `[data-node-name*="${customData}"]`
+            ).innerText = data[customData];
           }
         }
 
         // Check if the iteration is over
         // Run amimation if so
-        if ( dataArr.length === dataArr.indexOf(customData) + 1 ) {
+        if (dataArr.length === dataArr.indexOf(customData) + 1) {
           animationTimeline();
-        } 
+        }
       });
     });
 };
@@ -33,12 +46,28 @@ const animationTimeline = () => {
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
     .split("")
     .join("</span><span>")}</span`;
-    
-    hbd.innerHTML = `<span >${hbd.innerHTML
+    let text1Chars = '';
+    let text2Words = '';
+    var _text = hbd.innerHTML.split("/")
+    console.log(_text);
+    text1Chars = _text[0]
       .split("")
-      .join("</span><span>")}</span`;
+      .map((char) => {
+        return `<span>${char}</span>`;
+      })
+      .join("");
+    if (_text.length == 2){
+      text2Words = _text[1]
+        .split(" ")
+        .map((word) => {
+          return `<span>${word}</span>`;
+        })
+        .join(" ");
+        console.log('text2Words');
+    }
+    hbd.innerHTML = text1Chars + text2Words;
+    console.log(hbd);
     
-      console.log(hbd);
       
   const ideaTextTrans = {
     opacity: 0,
