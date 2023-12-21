@@ -29,15 +29,17 @@ const animationTimeline = () => {
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
-
+  
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
     .split("")
     .join("</span><span>")}</span`;
-
-  hbd.innerHTML = `<span>${hbd.innerHTML
-    .split("")
-    .join("</span><span>")}</span`;
-
+    
+    hbd.innerHTML = `<span >${hbd.innerHTML
+      .split("")
+      .join("</span><span>")}</span`;
+    
+      console.log(hbd);
+      
   const ideaTextTrans = {
     opacity: 0,
     y: -20,
@@ -303,4 +305,3 @@ const animationTimeline = () => {
 };
 
 // Run fetch and animation in sequence
-fetchData();
