@@ -45,7 +45,7 @@ button {
   width: 100vh;
   margin: 0 auto;
   text-align: center;
-  /* visibility: hidden; */
+  visibility: hidden;
   position: relative;
   overflow: hidden;
 }
@@ -297,6 +297,13 @@ button {
     height: 94px;
     top:-64px;
   }
+}
+
+@media screen and (max-width: 391px) {
+  .one {
+    font-size: 4.2rem;
+  }
+  
 }
 
 @media screen and (max-width: 500px) {
