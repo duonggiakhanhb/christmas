@@ -40,34 +40,53 @@ const fetchData = () => {
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
-  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
   
-  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
-    .split("")
-    .join("</span><span>")}</span`;
-    let text1Chars = '';
-    let text2Words = '';
-    var _text = hbd.innerHTML.split("/")
-    console.log(_text);
-    text1Chars = _text[0]
-      .split("")
-      .map((char) => {
-        return `<span>${char}</span>`;
-      })
-      .join("");
-    if (_text.length == 2){
-      text2Words = _text[1]
-        .split(" ")
-        .map((word) => {
-          return `<span>${word}</span>`;
-        })
-        .join(" ");
-        console.log('text2Words');
-    }
-    hbd.innerHTML = text1Chars + text2Words;
-    console.log(hbd);
-    
+  let text1Chars = '';
+  let text2Words = '';
+  let _text = hbd.innerHTML.split("/")
+  console.log(_text);
+  text1Chars = _text[0]
+  .split("")
+  .map((char) => {
+    return `<span>${char}</span>`;
+  })
+  .join("");
+  if (_text.length == 2){
+    text2Words = _text[1]
+    .split(" ")
+    .map((word) => {
+      return `<span>${word}</span>`;
+    })
+    .join("");
+    console.log('text2Words');
+  }
+  hbd.innerHTML = text1Chars + text2Words;
+  console.log(hbd);
+  text1Chars = '';
+  text2Words = '';
+  _text = '';
+  
+  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
+  _text = textBoxChars.innerHTML.split("/");
+  console.log(_text);
+  text1Chars = _text[0]
+   .split("")
+   .map((char) => {
+     return `<span>${char}</span>`;
+   })
+   .join("")
+
+   if (_text.length == 2){
+    text2Words = _text[1]
+   .split(" ")
+   .map((word) => {
+      return `<span>${word}</span>`;
+    })
+  .join("")
+  }
+  textBoxChars.innerHTML = text1Chars + text2Words;
+  console.log(textBoxChars);
       
   const ideaTextTrans = {
     opacity: 0,
